@@ -89,7 +89,7 @@ def simulate_glucose_concentration(time, BW, u, D, initial_bg):
     
     # Начальные условия (все нули)
     x0 = np.zeros(11)
-    x0[-1] = initial_bg*P[12]
+    x0[4] = initial_bg*P[12]
     
     # Время для решения ОДУ от 0 до заданного времени
     t = np.linspace(0, time, num=100)
