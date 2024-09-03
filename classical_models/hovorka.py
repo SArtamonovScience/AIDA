@@ -82,13 +82,14 @@ def hovorka_model(x: list, t: float, u: float, D: float, P: list) -> list:
 
     return [dD1, dD2, dS1, dS2, dQ1, dQ2, dI, dx1, dx2, dx3, dC]
 
-def simulate_glucose_concentration(time, BW, u, D):
+def simulate_glucose_concentration(time, BW, u, D, initial_bg):
     """Симуляция концентрации глюкозы через заданное время."""
     # Получаем параметры модели для заданного веса тела
     P = hovorka_parameters(BW)
     
     # Начальные условия (все нули)
     x0 = np.zeros(11)
+    x0[-1] = initial_bg*P[12]
     
     # Время для решения ОДУ от 0 до заданного времени
     t = np.linspace(0, time, num=100)
